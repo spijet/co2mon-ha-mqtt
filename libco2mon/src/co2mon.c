@@ -22,6 +22,7 @@
 #include "co2mon.h"
 
 #include "config.h"
+#include <string.h>
 
 static libusb_context *ctx = NULL;
 
