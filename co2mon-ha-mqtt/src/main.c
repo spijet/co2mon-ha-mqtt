@@ -188,16 +188,11 @@ void publish_mqtt_meta()
 	char* str;
 
   // Publish device metadata to MQTT:
-  str = "{\"obj_id\": \"dadget_co2\", \"dev_cla\": \"temperature\", "
-    "\"name\": \"DaDget Temp\", \"unit_of_meas\": \"°C\", "
-    "\"state_t\": \"/homeassistant/sensor/co2mon/temp\"}";
-  mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2monT/config",
-                    strlen(str), str, 2, true);
-  str =
-    "{\"obj_id\": \"dadget_co2\", \"dev_cla\": \"carbon_dioxide\", "
-    "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
-    "\"/homeassistant/sensor/co2mon/co2\"}";
-  mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2monC/config",
+  str = "{\"obj_id\": \"dadget_co2\", \"dev_cla\": \"carbon_dioxide\", "
+        "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
+        "\"/homeassistant/sensor/co2mon/co2\", \"temp_unit\": \"°C\", "
+        "\"temp_stat_t\": \"/homeassistant/sensor/co2mon/temp\"}";
+  mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2mon/config",
                     strlen(str), str, 2, true);
 }
 
