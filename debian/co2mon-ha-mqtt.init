@@ -1,15 +1,15 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          wb-mqtt-co2mon
+# Provides:          co2mon-ha-mqtt
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Required-Start: $remote_fs, mosquitto
 # Required-Stop: $remote_fs, mosquitto
-# Short-Description: WB MQTT driver for MasterKit MT8057 CO2 sensor
-# Description:       WB MQTT driver for MasterKit MT8057 CO2 sensor
+# Short-Description: HomeAssistant MQTT driver for MasterKit MT8057 CO2 sensor
+# Description:       HomeAssistant MQTT driver for MasterKit MT8057 CO2 sensor
 ### END INIT INFO
 
-# Author: Evgeny Boger <boger@contactless.ru>
+# Author: Serge Tkatchouk <sp1j3t@gmail.com>
 #
 # Please remove the "Author" lines above and replace them
 # with your own name if you copy and modify this script.
@@ -18,8 +18,8 @@
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="WB MQTT driver for MasterKit MT8057 CO2 sensor"
-NAME=wb-mqtt-co2mon
+DESC="HomeAssistant MQTT driver for MasterKit MT8057 CO2 sensor"
+NAME=co2mon-ha-mqtt
 DAEMON=/usr/bin/$NAME
 DAEMON_ARGS=""
 PIDFILE=/var/run/$NAME.pid

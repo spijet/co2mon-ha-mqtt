@@ -1,4 +1,4 @@
-project(wb-mqtt-co2mon)
+project(co2mon-ha-mqtt)
 cmake_minimum_required(VERSION 2.8)
 
 find_package(PkgConfig)
@@ -17,9 +17,9 @@ link_directories(
     ${GIO2_LIBRARY_DIRS})
 
 aux_source_directory(src SRC_LIST)
-add_executable(wb-mqtt-co2mon ${SRC_LIST})
-target_link_libraries(wb-mqtt-co2mon
+add_executable(co2mon-ha-mqtt ${SRC_LIST})
+target_link_libraries(co2mon-ha-mqtt
     co2mon
     mosquitto)
 
-install (TARGETS wb-mqtt-co2mon DESTINATION bin)
+install (TARGETS co2mon-ha-mqtt DESTINATION bin)

@@ -1,3 +1,10 @@
+co2mon-ha-mqtt (1.1.2) stable; urgency=medium
+
+  * Rework the daemon to use HomeAssistant-spec MQTT schema
+  * Change the daemon and package names to "co2mon-ha-mqtt"
+
+ -- Serge Tkatchouk <sp1j3t@gmail.com>   Fri, 15 Apr 2022 12:53:15 +0800
+
 wb-mqtt-co2mon (1.1.1) stable; urgency=medium
 
   * add -n switch to support devices with no parameter encoding

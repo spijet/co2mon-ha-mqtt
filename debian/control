@@ -1,11 +1,11 @@
-Source: wb-mqtt-co2mon
-Maintainer: Evgeny Boger <boger@contactless.ru>
+Source: co2mon-ha-mqtt
+Maintainer: Serge Tkatchouk <sp1j3t@gmail.com>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.2
 Build-Depends: debhelper (>= 9), libusb-dev, pkg-config, libusb-1.0-0-dev, libmosquitto-dev
 
-Package: wb-mqtt-co2mon
+Package: co2mon-ha-mqtt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0, libmosquitto1
-Description: WB MQTT driver for MasterKit MT8057 CO2 sensor
+Description: HomeAssistant MQTT driver for MasterKit MT8057 CO2 sensor
