@@ -188,12 +188,17 @@ void publish_mqtt_meta()
 	char* str;
 
   // Publish device metadata to MQTT:
-  str = "{\"obj_id\": \"dadget_co2\", \"dev_cla\": \"carbon_dioxide\", "
-        "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
-        "\"/homeassistant/sensor/co2mon/co2\", \"temp_unit\": \"°C\", "
-        "\"temp_stat_t\": \"/homeassistant/sensor/co2mon/temp\"}";
-  mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2mon/config",
-                    strlen(str), str, 2, true);
+        str =
+            "{\"obj_id\": \"co2mon_co2\", \"unique_id\": "
+            "\"co2mon_co2_sensor\", \"device\": {\"identifiers\": [\"mt8057\", "
+            "\"co2mon\"], \"name\": \"co2mon MT8057\", \"model\": \"MT8057\", "
+            "\"manufacturer\": \"DaDget\", \"sw_version\": \"1.x\"}, "
+            "\"dev_cla\": \"carbon_dioxide\", "
+            "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
+            "\"/homeassistant/sensor/co2mon/co2\", \"temp_unit\": \"°C\", "
+            "\"temp_stat_t\": \"/homeassistant/sensor/co2mon/temp\"}";
+        mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2mon/config",
+                          strlen(str), str, 2, true);
 }
 
 
