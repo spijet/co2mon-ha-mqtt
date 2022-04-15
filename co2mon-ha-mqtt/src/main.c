@@ -195,7 +195,7 @@ void publish_mqtt_meta()
             "\"manufacturer\": \"DaDget\", \"sw_version\": \"1.x\"}, "
             "\"dev_cla\": \"carbon_dioxide\", \"name\": \"DaDget CO2\", "
             "\"~\": \"homeassistant/sensor/co2mon\", "
-            "\"unit_of_meas\": \"ppm\", \"state_t\": \"~/co2\", "
+            "\"unit_of_meas\": \"ppm\", \"stat_t\": \"~/co2\", "
             "\"temp_unit\": \"°C\", \"temp_stat_t\": \"~/temp\", "
             "\"err_t\": \"~/co2/error\"}";
         mosquitto_publish(mosq, NULL, "homeassistant/sensor/co2mon/config",
