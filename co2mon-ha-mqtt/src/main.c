@@ -195,7 +195,7 @@ void publish_mqtt_meta()
                     strlen(str), str, 2, true);
   str =
     "{\"obj_id\": \"dadget_co2\", \"dev_cla\": \"carbon_dioxide\", "
-    "\"name\": \"DaDget CO2\", \"unit_of_mea\": \"ppm\", \"state_t\": "
+    "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
     "\"/homeassistant/sensor/co2mon/co2\"}";
   mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2monC/config",
                     strlen(str), str, 2, true);
