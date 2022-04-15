@@ -185,21 +185,38 @@ void monitor_loop()
 
 void publish_mqtt_meta()
 {
-	char* str;
+  // Pre-fill device registry info:
+  char *devreg_info = "\"identifiers\": [\"mt8057\", \"co2mon\"], "
+                      "\"name\": \"DaDget MT8057\", \"model\": \"MT8057\", "
+                      "\"manufacturer\": \"DaDget\", \"sw_version\": \"1.x\"";
+  // Same for general Discovery info:
+  char *discovery_info =
+      "\"obj_id\": \"co2mon_co2\", \"unique_id\": \"co2mon_co2_sensor\", "
+      "\"~\": \"homeassistant/sensor/co2mon\"";
+
+  // CO2 measurement data:
+  char *co2_info = "\"dev_cla\": \"carbon_dioxide\", \"name\": \"DaDget CO2\", "
+                   "\"unit_of_meas\": \"ppm\", \"stat_t\": \"~/co2\", "
+                   "\"err_t\": \"~/co2/error\"";
+
+  // Temperature measurement data:
+  char *temp_info = "\"dev_cla\": \"temperature\", \"name\": \"DaDget Temp\", "
+                    "\"unit_of_meas\": \"°C\", \"stat_t\": \"~/temp\", "
+                    "\"err_t\": \"~/temp/error\"";
+
+  // Config topic format:
+  char *config_topic_format = "{\"device\": {%s}, %s, %s}";
+
+  // Final string buffer to use when publishing config:
+  char *str;
 
   // Publish device metadata to MQTT:
-        str =
-            "{\"obj_id\": \"co2mon_co2\", \"unique_id\": "
-            "\"co2mon_co2_sensor\", \"device\": {\"identifiers\": [\"mt8057\", "
-            "\"co2mon\"], \"name\": \"co2mon MT8057\", \"model\": \"MT8057\", "
-            "\"manufacturer\": \"DaDget\", \"sw_version\": \"1.x\"}, "
-            "\"dev_cla\": \"carbon_dioxide\", \"name\": \"DaDget CO2\", "
-            "\"~\": \"homeassistant/sensor/co2mon\", "
-            "\"unit_of_meas\": \"ppm\", \"stat_t\": \"~/co2\", "
-            "\"temp_unit\": \"°C\", \"temp_stat_t\": \"~/temp\", "
-            "\"err_t\": \"~/co2/error\"}";
-        mosquitto_publish(mosq, NULL, "homeassistant/sensor/co2mon/config",
-                          strlen(str), str, 2, true);
+  sprintf(str, config_topic_format, devreg_info, discovery_info, co2_info);
+  mosquitto_publish(mosq, NULL, "homeassistant/sensor/co2monC/config",
+                    strlen(str), str, 2, true);
+  sprintf(str, config_topic_format, devreg_info, discovery_info, temp_info);
+  mosquitto_publish(mosq, NULL, "homeassistant/sensor/co2monT/config",
+                    strlen(str), str, 2, true);
 }
 
 
