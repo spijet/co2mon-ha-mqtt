@@ -45,7 +45,7 @@ static double decode_temperature(uint16_t w)
 static void publish_mqtt_error(const char * control, const char * error) {
   static char buf[100];
   snprintf(buf, sizeof(buf),
-           "/homeassistant/sensor/co2mon/%s/error",
+           "homeassistant/sensor/co2mon/%s/error",
            control);
   mosquitto_publish(mosq, NULL, buf, error ? strlen(error) : 0, error, 2, true);
 }
@@ -131,7 +131,7 @@ static void device_loop(co2mon_device dev)
       snprintf(buffer, 15, "%2.1f", decode_temperature(w));
       mosquitto_publish(
                         mosq, NULL,
-                        "/homeassistant/sensor/co2mon/temp",
+                        "homeassistant/sensor/co2mon/temp",
                         strlen(buffer), buffer, 2, true);
       set_temp_error(0);
       break;
@@ -143,7 +143,7 @@ static void device_loop(co2mon_device dev)
       snprintf(buffer, 15, "%d", w);
       mosquitto_publish(
                         mosq, NULL,
-                        "/homeassistant/sensor/co2mon/co2",
+                        "homeassistant/sensor/co2mon/co2",
                         strlen(buffer), buffer, 2, true);
       set_co2_error(0);
       break;
@@ -193,11 +193,12 @@ void publish_mqtt_meta()
             "\"co2mon_co2_sensor\", \"device\": {\"identifiers\": [\"mt8057\", "
             "\"co2mon\"], \"name\": \"co2mon MT8057\", \"model\": \"MT8057\", "
             "\"manufacturer\": \"DaDget\", \"sw_version\": \"1.x\"}, "
-            "\"dev_cla\": \"carbon_dioxide\", "
-            "\"name\": \"DaDget CO2\", \"unit_of_meas\": \"ppm\", \"state_t\": "
-            "\"/homeassistant/sensor/co2mon/co2\", \"temp_unit\": \"°C\", "
-            "\"temp_stat_t\": \"/homeassistant/sensor/co2mon/temp\"}";
-        mosquitto_publish(mosq, NULL, "/homeassistant/sensor/co2mon/config",
+            "\"dev_cla\": \"carbon_dioxide\", \"name\": \"DaDget CO2\", "
+            "\"~\": \"homeassistant/sensor/co2mon\", "
+            "\"unit_of_meas\": \"ppm\", \"state_t\": \"~/co2\", "
+            "\"temp_unit\": \"°C\", \"temp_stat_t\": \"~/temp\", "
+            "\"err_t\": \"~/co2/error\"}";
+        mosquitto_publish(mosq, NULL, "homeassistant/sensor/co2mon/config",
                           strlen(str), str, 2, true);
 }
 
